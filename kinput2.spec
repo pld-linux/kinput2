@@ -14,6 +14,7 @@ Release:	1
 License:	distributable
 Group:		X11/Applications
 Source0:	ftp://ftp.sra.co.jp/pub/x11/kinput2/%{name}-%{version}.tar.gz
+# Source0-md5:	2de20576f150248d1fdfe66d7cc4e510
 Source1:	Kinput2.conf.canna-wnn6
 Source2:	Kinput2.conf.canna
 Source3:	Kinput2.conf.wnn6
