@@ -9,7 +9,7 @@
 Summary:	Kanji input server for X11
 Summary(pl):	Serwer wprowadzania znaków Kanji dla X11
 Name:		kinput2
-Version:	v3
+Version:	v3.1
 Release:	1
 License:	distributable
 Group:		X11/Applications
