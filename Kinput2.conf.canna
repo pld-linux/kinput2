@@ -1,0 +1,140 @@
+XCOMM
+XCOMM Kinput2 global configuration parameters
+XCOMM
+/*
+ * Before editing following parameters, you should read 
+ * README file.
+ */
+
+/**
+ ** Conversion system configuration:
+ **	Kinput2 supports 3 conversion systems, Wnn, Canna and Sj3.
+ **	In order to install and use kinput2, you have to compile and
+ **	install at least one of them.  If you select more than one
+ **	conversion system, you can choose one at run time with a
+ **	command line option.
+ **/
+
+/* #define UseWnn */	/* define if you are going to use Wnn (v4 or v6) */
+/* #define UseWnn6 */	/* define if you are going to use Wnn6 */
+#define UseCanna	/* define if you are going to use Canna */
+/* #define UseSj3 */	/* define if you are going to use Sj3 */
+
+
+XCOMM Wnn configuration
+/*
+ * If you define UseWnn, set following 3 variables:
+ *
+ *	WNNINCDIR: Wnn include file directory
+ *	WNNLIB: Wnn client-side library
+ *	CCDEF_DIR: directory where character conversion rule
+ *		   definition files are to be installed
+ *
+ * You have to define WnnLibDir if Wnn4 configuration files
+ * are not installed in /usr/local/lib/wnn (which is the default).
+ */
+/* #define WnnLibDir /some/peculiar/directory/wnn */
+
+/* for convenience.. */
+#if defined(UseWnn6) && !defined(UseWnn)
+#define UseWnn
+#endif
+
+CCDEF_DIR = $(LIBDIR)/ccdef
+
+/*
+ * If you have installed Wnn..
+ *
+ * First check the directory where Wnn header files has been installed.
+ * Note that if you installed Wnn4 configuration files in a directory
+ * other than the default (/usr/local/lib/wnn), you have to define
+ * WnnLibDir above.
+ */
+XCOMM use installed header files
+XCOMM WNNINCDIR = /usr/X11R6/include/wnn
+XCOMM use installed library
+XCOMM WNNLIB = -lwnn
+
+/*
+ * Or, use library in the source tree..
+ */
+XCOMM use library in the source tree
+WNNSRC = $(CONTRIBSRC)/programs/Xsi/Wnn
+WNNINCDIR = $(WNNSRC)/include
+WNNLIB = $(WNNSRC)/jlib/libwnn.a
+
+
+XCOMM Canna configuration
+/*
+ * If you define UseCanna, set following 2 variables:
+ *	CANNASRC: Canna source directory (or directory of installed headers)
+ *	CANNALIB: Canna user library
+ * Note that kinput2 no longer supports Canna version 1.x,
+ * which came with X11R5.  Use the new version in R6 contrib.
+ */
+
+/*
+ * If you have already installed Canna header files and libraries..
+ */
+XCOMM use installed headers/libraries
+CANNAINSTDIR = /usr
+CANNASRC = $(CANNAINSTDIR)/include
+CANNALIB = -lcanna16
+
+/*
+ * If you have compiled Canna that came with X11R6 (contrib/programs/Canna),
+ * but not installed yet..
+ */
+XCOMM use headers/libraries in the source tree
+CANNASRC = $(CONTRIBSRC)/programs/Canna32
+CANNALIB = -L$(CANNASRC)/lib/canna16 -lcanna16
+
+
+XCOMM SJ3 configuration
+/*
+ * If you define UseSj3, set following 3 variables:
+ *	SJ3SRC: Sj3 source directory
+ *	SJ3LIB: Sj3 user library
+ *	SJ3DEF_DIR: directory where conversion rule
+ *		   definition files are to be installed
+ */
+
+SJ3DEF_DIR = $(LIBDIR)/sj3def
+
+/*
+ * If you have installed SJ3 library and header file,
+ * or your machine is Sony NEWS, on which SJ3 is
+ * already installed..
+ * (in this case, you don't have to care about SJ3SRC)
+ */
+XCOMM use installed header/library
+XCOMM specify the directory where libsj3.h resides as SJ3SRC.
+XCOMM SJ3SRC = /usr/local/include
+XCOMM SJ3LIB = -lsj3lib
+
+/*
+ * Use compiled library in the source tree..
+ */
+XCOMM use library in the source tree
+SJ3SRC = $(CONTRIBSRC)/programs/sj3
+SJ3LIB = $(SJ3SRC)/sj3lib/libsj3lib.a
+
+
+/**
+ ** Transport configuration:
+ **	Kinput2 X Input Method Protocol handler supports
+ **	3 transports, X, TCP and local (UNIX domain).
+ **	If your system does not support any of these,
+ **	add appropriate flag(s) to TRANSPORTDEFS.
+ **
+ **	-DNO_UNIX_TRANSPORT	-- if UNIX domain transport is not available
+ **	-DNO_TCP_TRANSPORT	-- if TCP/IP transport is not available
+ **	-DNO_X_TRANSPORT	-- if X transport is not available (unlikely)
+ **/
+XCOMM transport configuration
+
+TRANSPORTDEFS = 
+
+XCOMM
+XCOMM End of global configuration parameters
+XCOMM
