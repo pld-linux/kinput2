@@ -23,7 +23,7 @@ BuildRequires:	XFree86-devel
 %{?_with_wnn6:BuildRequires:	Wnn6-SDK-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		addir		/usr/X11R6/lib/X11/app-defaults
+%define		_appdefsdir		/usr/X11R6/lib/X11/app-defaults
 
 %description
 Kinput2 is an input server for X11 applications that want Japanese
@@ -51,9 +51,9 @@ xmkmf -a
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/ccdef,%{_mandir}/man1,%{addir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/ccdef,%{_mandir}/man1,%{_appdefsdir}}
 install cmd/%{name} $RPM_BUILD_ROOT%{_bindir}
-install cmd/Kinput2.ad $RPM_BUILD_ROOT%{addir}/Kinput2
+install cmd/Kinput2.ad $RPM_BUILD_ROOT%{_appdefsdir}/Kinput2
 install cmd/kinput2.man $RPM_BUILD_ROOT%{_mandir}/man1/kinput2.1x
 install ccdef/ccdef* $RPM_BUILD_ROOT%{_datadir}/ccdef
 install ccdef/rule* $RPM_BUILD_ROOT%{_datadir}/ccdef
@@ -66,5 +66,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc NEWS README doc/*
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/ccdef
-%{addir}/Kinput2
+%{_appdefsdir}/Kinput2
 %{_mandir}/man1/kinput2.1x*
