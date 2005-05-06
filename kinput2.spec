@@ -1,9 +1,9 @@
 #
 # Conditional build:
-# _with_canna	- Canna support (default if neither option specified)
-# _with_wnn6	- Wnn6 support
+%bcond_with canna		# Canna support (default if neither option specified)
+%bcond_with wnn6		# Wnn6 support
 #
-%if %{?_with_wnn6:0}%{!?_with_wnn6:1}
+%if ! %{with wnn6}
 %define _with_canna 1
 %endif
 Summary:	Kanji input server for X11
@@ -19,8 +19,8 @@ Source1:	Kinput2.conf.canna-wnn6
 Source2:	Kinput2.conf.canna
 Source3:	Kinput2.conf.wnn6
 BuildRequires:	XFree86-devel
-%{?_with_canna:BuildRequires:	Canna-devel}
-%{?_with_wnn6:BuildRequires:	Wnn6-SDK-devel}
+%{?with_canna:BuildRequires:	Canna-devel}
+%{?with_wnn6:BuildRequires:	Wnn6-SDK-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_appdefsdir		/usr/X11R6/lib/X11/app-defaults
@@ -36,11 +36,11 @@ wymagaj± danych w jêzyku japoñskim.
 %prep
 %setup -q
 
-%if 0%{?_with_canna:1}
-%{?_with_wnn6:cp %{SOURCE1} Kinput2.conf.in}
-%{!?_with_wnn6:cp %{SOURCE2} Kinput2.conf.in}
+%if 0%{with canna}
+%{?with_wnn6:cp %{SOURCE1} Kinput2.conf.in}
+%{!?with_wnn6:cp %{SOURCE2} Kinput2.conf.in}
 %else
-%{?_with_wnn6:cp %{SOURCE3} Kinput2.conf.in}
+%{?with_wnn6:cp %{SOURCE3} Kinput2.conf.in}
 %endif
 
 %build
