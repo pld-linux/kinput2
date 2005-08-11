@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_with canna		# Canna support (default if neither option specified)
-%bcond_with wnn6		# Wnn6 support
+%bcond_with	canna		# Canna support (default if neither option specified)
+%bcond_with	wnn6		# Wnn6 support
 #
 %if ! %{with wnn6}
 %define _with_canna 1
