@@ -7,7 +7,7 @@
 %define _with_canna 1
 %endif
 Summary:	Kanji input server for X11
-Summary(pl):	Serwer wprowadzania znaków Kanji dla X11
+Summary(pl.UTF-8):   Serwer wprowadzania znakÃ³w Kanji dla X11
 Name:		kinput2
 Version:	v3.1
 Release:	1
@@ -29,9 +29,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Kinput2 is an input server for X11 applications that want Japanese
 text input.
 
-%description -l pl
-Kinput2 jest serwerem wprowadzania danych dla aplikacji X11 które
-wymagaj± danych w jêzyku japoñskim.
+%description -l pl.UTF-8
+Kinput2 jest serwerem wprowadzania danych dla aplikacji X11 ktÃ³re
+wymagajÄ… danych w jÄ™zyku japoÅ„skim.
 
 %prep
 %setup -q
