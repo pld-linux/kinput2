@@ -7,7 +7,7 @@
 %define _with_canna 1
 %endif
 Summary:	Kanji input server for X11
-Summary(pl.UTF-8):   Serwer wprowadzania znaków Kanji dla X11
+Summary(pl.UTF-8):	Serwer wprowadzania znaków Kanji dla X11
 Name:		kinput2
 Version:	v3.1
 Release:	1
